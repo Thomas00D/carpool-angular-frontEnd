@@ -33,7 +33,7 @@ export class ManageUserComponent {
 
     if (jwt) {
       this.html
-        .get('http://localhost/backend-angular-ticket-dw1-24/user-list.php', {
+        .get('http://localhost/carpool-angular-backEnd/user-list.php', {
           headers: { Authorization: jwt },
         })
         .subscribe({
@@ -50,7 +50,7 @@ export class ManageUserComponent {
       if (jwt) {
         this.html
           .delete(
-            'http://localhost/backend-angular-ticket-dw1-24/delete-user.php?id=' +
+            'http://localhost/carpool-angular-backEnd/delete-user.php?id=' +
               idUtilisateur,
             { headers: { Authorization: jwt } }
           )

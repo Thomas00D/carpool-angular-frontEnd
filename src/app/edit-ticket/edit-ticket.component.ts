@@ -46,7 +46,7 @@ export class EditTicketComponent {
       if (jwt) {
         this.http
           .post(
-            'http://localhost/backend-angular-ticket-dw1-24/add-ticket.php',
+            'http://localhost/carpool-angular-backEnd/add-ticket.php',
             this.formulaire.value,
             {
               headers: { Authorization: jwt },

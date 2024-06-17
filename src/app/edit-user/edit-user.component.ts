@@ -66,7 +66,7 @@ export class EditUserComponent {
         if (jwt) {
           this.http
             .get(
-              'http://localhost/backend-angular-ticket-dw1-24/get-user.php?id=' +
+              'http://localhost/carpool-angular-backEnd/get-user.php?id=' +
                 parametres['id'],
               { headers: { Authorization: jwt } }
             )
@@ -90,40 +90,38 @@ export class EditUserComponent {
   onAjoutUtilisateur() {
     if (this.formulaire.valid) {
       const url = this.userId
-        ? 'http://localhost/backend-angular-ticket-dw1-24/edit-user.php?id=' +
+        ? 'http://localhost/carpool-angular-backEnd/edit-user.php?id=' +
           this.userId
-        : 'http://localhost/backend-angular-ticket-dw1-24/add-user.php';
+        : 'http://localhost/carpool-angular-backEnd/add-user.php';
 
+      const jwt = localStorage.getItem('jwt');
 
-       const jwt = localStorage.getItem('jwt');
-
-        if (jwt) {
-
-          this.http
-            .post(url, this.formulaire.value, {
-              headers: { Authorization: jwt },
-            })
-            .subscribe({
-              next: (resultat) => {
-                this.snackBar.open(
-                  "L'utilisateur a bien été " +
-                    (this.userId ? 'modifié' : 'ajouté'),
-                  undefined,
-                  {
-                    duration: 3000,
-                  }
-                );
-                this.router.navigateByUrl('/gestion-utilisateurs');
-              },
-              error: (erreur) => {
-                if (erreur.status == 409) {
-                  alert(erreur.error.message);
-                } else {
-                  alert('Erreur inconnue, contactez votre administrateur');
+      if (jwt) {
+        this.http
+          .post(url, this.formulaire.value, {
+            headers: { Authorization: jwt },
+          })
+          .subscribe({
+            next: (resultat) => {
+              this.snackBar.open(
+                "L'utilisateur a bien été " +
+                  (this.userId ? 'modifié' : 'ajouté'),
+                undefined,
+                {
+                  duration: 3000,
                 }
-              },
-            });
-        }
+              );
+              this.router.navigateByUrl('/gestion-utilisateurs');
+            },
+            error: (erreur) => {
+              if (erreur.status == 409) {
+                alert(erreur.error.message);
+              } else {
+                alert('Erreur inconnue, contactez votre administrateur');
+              }
+            },
+          });
+      }
     }
   }
 }

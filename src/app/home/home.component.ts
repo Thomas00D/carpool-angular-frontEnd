@@ -37,7 +37,7 @@ export class HomeComponent {
 
     if (jwt) {
       this.html
-        .get('http://localhost/backend-angular-ticket-dw1-24/ticket-list.php', {
+        .get('http://localhost/carpool-angular-backEnd/ticket-list.php', {
           headers: { Authorization: jwt },
         })
         .subscribe({

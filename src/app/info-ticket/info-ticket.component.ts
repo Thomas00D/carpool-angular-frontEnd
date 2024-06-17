@@ -49,13 +49,12 @@ export class InfoTicketComponent {
         if (jwt) {
           this.http
             .get(
-              'http://localhost/backend-angular-ticket-dw1-24/get-ticket.php?id=' +
+              'http://localhost/carpool-angular-backEnd/get-ticket.php?id=' +
                 parametres['id'],
               { headers: { Authorization: jwt } }
             )
             .subscribe({
               next: (messageList) => {
-
                 this.messageList = messageList;
               },
               error: (erreur) => alert(erreur.error.message),
@@ -72,7 +71,7 @@ export class InfoTicketComponent {
       if (jwt) {
         this.http
           .post(
-            'http://localhost/backend-angular-ticket-dw1-24/add-message.php?id_ticket=' +
+            'http://localhost/carpool-angular-backEnd/add-message.php?id_ticket=' +
               this.idTicket,
             this.formulaire.value,
             {
@@ -100,7 +99,7 @@ export class InfoTicketComponent {
     if (jwt != null) {
       this.http
         .post(
-          'http://localhost/backend-angular-ticket-dw1-24/ticket-resolu.php?id_ticket=' +
+          'http://localhost/carpool-angular-backEnd/ticket-resolu.php?id_ticket=' +
             this.idTicket,
           {},
           {
